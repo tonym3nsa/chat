@@ -2,18 +2,25 @@ import React, { useState, useEffect, useRef, Fragment } from "react";
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { postMessage, getMessage } from "../../redux/actions/chat";
-import { AUTHOR, INTERVAL } from "../../constants/constants";
+import { AUTHOR, INTERVAL, LOGIN_PAGE } from "../../constants/constants";
 import { Bubble } from "../../components/Bubble/Bubble";
-import "./chatPage.css";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import "./chatPage.css";
 
 export const ChatPage = () => {
   const { history } = useSelector((state) => state.chatReducer);
+  const navigate = useNavigate();
   const messagesEndRef = useRef(null);
-
   const [messages, setMessages] = useState([]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem(AUTHOR)) {
+      navigate(LOGIN_PAGE);
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(getMessage());
