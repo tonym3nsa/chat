@@ -2,13 +2,13 @@ import { MONTHS } from "../constants/constants";
 
 /**
  * Returns human-readable time from UNIX time
- * @param {number} timestamp
+ * @param {number} timeStamp
  * @returns {string}
  */
 
-export const getFormattedTime = (timestamp) => {
-  console.log("tie", timestamp);
-  const date = new Date(timestamp);
+export const getFormattedTime = (timeStamp) => {
+  console.log("tie", timeStamp);
+  const date = new Date(timeStamp);
   const day = date.getDate();
   const month = date.getMonth();
   const year = date.getFullYear();

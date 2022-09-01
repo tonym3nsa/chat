@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,8 @@ import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 export const ChatPage = () => {
   const { history } = useSelector((state) => state.chatReducer);
+  const messagesEndRef = useRef(null);
+
   const [messages, setMessages] = useState([]);
   const dispatch = useDispatch();
 
@@ -18,15 +20,27 @@ export const ChatPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(">>>", history);
+    if (history?.length > 0) {
+      scrollToBottom();
+    }
   }, [history]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // useEffect(() => {
+  //   if (messages.length > 0) {
+  //     scrollToBottom();
+  //   }
+  // }, [messages]);
 
   const onSubmit = (event) => {
     event.preventDefault();
     const message = event.target.chat.value;
     let cloneMessages = [...messages];
     const author = localStorage.getItem(AUTHOR);
-    cloneMessages.push({ timestamp: new Date(), author, message });
+    cloneMessages.push({ timeStamp: new Date(), author, message });
     setMessages(cloneMessages);
     dispatch(postMessage({ timeStamp: new Date(), author, message }));
     event.target.reset();
@@ -35,12 +49,12 @@ export const ChatPage = () => {
     <Fragment>
       <div className="chat-area">
         {history?.length > 0 ? (
-          history?.map((item) => {
+          history.map((item) => {
             return (
               <Bubble
                 message={item.message}
                 author={item.author}
-                timestamp={item.timeStamp}
+                timeStamp={item.timeStamp}
                 key={item.timeStamp}
               />
             );
@@ -49,6 +63,7 @@ export const ChatPage = () => {
           <EmptyState />
         )}
       </div>
+      <div ref={messagesEndRef} />
       <form onSubmit={onSubmit}>
         <div className="messaging-section ">
           <div className="grid">

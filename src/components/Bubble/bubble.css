@@ -27,12 +27,12 @@
   float: left;
 }
 
-.bubble .timestamp,
+.bubble .timeStamp,
 .bubble .author {
   font-size: 13px;
   color: #bfc2c5;
 }
 
-.bubble .timestamp {
+.bubble .timeStamp {
   text-align: right;
 }

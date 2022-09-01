@@ -5,7 +5,7 @@ import { AUTHOR } from "../../constants/constants";
 import "./bubble.css";
 
 export const Bubble = (props) => {
-  const { message, timestamp, author, className } = props;
+  const { message, timeStamp, author, className } = props;
   const currentUser = localStorage.getItem(AUTHOR);
   return (
     <div
@@ -16,9 +16,9 @@ export const Bubble = (props) => {
     >
       <div className="author">{author}</div>
       <p data-test="bubble-message">{message}</p>
-      <div className="timestamp">
-        {(timestamp || Number.isInteger(timestamp)) &&
-          getFormattedTime(timestamp)}
+      <div className="timeStamp">
+        {(timeStamp || Number.isInteger(timeStamp)) &&
+          getFormattedTime(timeStamp)}
       </div>
     </div>
   );
@@ -27,7 +27,7 @@ export const Bubble = (props) => {
 Bubble.propTypes = {
   message: PropTypes.string.isRequired,
   className: PropTypes.string,
-  timestamp: PropTypes.number.isRequired,
+  timeStamp: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   userType: PropTypes.oneOf(["self", "other"]),
 };
