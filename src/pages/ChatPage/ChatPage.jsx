@@ -4,6 +4,7 @@ import { Button } from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { postMessage, getMessage } from "../../redux/actions/chat";
 import { AUTHOR } from "../../constants/constants";
+import { Bubble } from "../../components/Bubble/Bubble";
 import "./chatPage.css";
 
 export const ChatPage = () => {
@@ -14,6 +15,10 @@ export const ChatPage = () => {
   useEffect(() => {
     dispatch(getMessage());
   }, []);
+
+  useEffect(() => {
+    console.log(">>>", history);
+  }, [history]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +34,14 @@ export const ChatPage = () => {
     <Fragment>
       <div className="chat-area">
         {history?.map((item) => {
-          return <div key={item.timeStamp}>{item.message}</div>;
+          return (
+            <Bubble
+              message={item.message}
+              author={item.author}
+              timestamp={item.timeStamp}
+              key={item.timeStamp}
+            />
+          );
         })}
       </div>
       <form onSubmit={onSubmit}>

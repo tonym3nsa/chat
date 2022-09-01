@@ -1,0 +1,38 @@
+.bubble {
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 52vw;
+  margin-bottom: 20px;
+  float: right;
+  clear: both;
+}
+
+.bubble p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.bubble.self {
+  background: #ffffff;
+  float: right;
+}
+
+.bubble:hover {
+  filter: saturate(2);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.bubble.other {
+  background: rgba(78, 64, 109, 0.11);
+  float: left;
+}
+
+.bubble .timestamp,
+.bubble .author {
+  font-size: 13px;
+  color: #bfc2c5;
+}
+
+.bubble .timestamp {
+  text-align: right;
+}
