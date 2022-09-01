@@ -60,8 +60,8 @@ export const ChatPage = () => {
               <Bubble
                 message={item.message}
                 author={item.author}
-                timeStamp={item.timeStamp}
-                key={item.timeStamp}
+                timeStamp={item.timeStamp.toString()}
+                key={item.timeStamp.toString()}
               />
             );
           })

@@ -16,10 +16,7 @@ export const Bubble = (props) => {
     >
       <div className="author">{author}</div>
       <p data-test="bubble-message">{message}</p>
-      <div className="timeStamp">
-        {(timeStamp || Number.isInteger(timeStamp)) &&
-          getFormattedTime(timeStamp)}
-      </div>
+      <div className="timeStamp">{getFormattedTime(timeStamp)}</div>
     </div>
   );
 };
@@ -27,7 +24,7 @@ export const Bubble = (props) => {
 Bubble.propTypes = {
   message: PropTypes.string.isRequired,
   className: PropTypes.string,
-  timeStamp: PropTypes.string.isRequired,
+  timeStamp: PropTypes.string,
   author: PropTypes.string.isRequired,
   userType: PropTypes.oneOf(["self", "other"]),
 };
