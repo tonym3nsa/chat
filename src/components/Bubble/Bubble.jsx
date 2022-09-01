@@ -6,7 +6,7 @@ import "./bubble.css";
 
 export const Bubble = (props) => {
   const { message, timeStamp, author, className } = props;
-  const currentUser = localStorage.getItem(AUTHOR);
+  const currentUser = sessionStorage.getItem(AUTHOR);
   return (
     <div
       role="listitem"

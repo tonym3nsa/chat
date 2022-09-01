@@ -34,7 +34,7 @@ export const ChatPage = () => {
     event.preventDefault();
     const message = event.target.chat.value;
     let cloneMessages = [...messages];
-    const author = localStorage.getItem(AUTHOR);
+    const author = sessionStorage.getItem(AUTHOR);
     cloneMessages.push({ timeStamp: new Date(), author, message });
     setMessages(cloneMessages);
     dispatch(postMessage({ timeStamp: new Date(), author, message }));

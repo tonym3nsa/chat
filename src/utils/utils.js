@@ -7,7 +7,6 @@ import { MONTHS } from "../constants/constants";
  */
 
 export const getFormattedTime = (timeStamp) => {
-  console.log("tie", timeStamp);
   const date = new Date(timeStamp);
   const day = date.getDate();
   const month = date.getMonth();
@@ -16,4 +15,11 @@ export const getFormattedTime = (timeStamp) => {
   const minutes =
     date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
   return `${day} ${MONTHS[month]} ${year} ${hour}:${minutes}`;
+};
+
+export const paginate = (array, page_size, page_number) => {
+  // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
+  return array
+    ?.reverse()
+    ?.slice((page_number - 1) * page_size, page_number * page_size);
 };

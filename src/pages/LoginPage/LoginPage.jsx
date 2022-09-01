@@ -11,7 +11,7 @@ export const LoginPage = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     if (event.target.username.value) {
-      localStorage.setItem(AUTHOR, event.target.username.value);
+      sessionStorage.setItem(AUTHOR, event.target.username.value);
       navigate("/chat");
     }
   };
