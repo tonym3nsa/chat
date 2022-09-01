@@ -1,0 +1,23 @@
+button.button {
+  background: #4E416D;
+  border-radius: 4px;
+  color: #ffffff;
+  border: none;
+  padding: 17px 40px;
+  line-height: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.button:hover {
+  -webkit-transition: all .5s 0s ease;
+  -moz-transition: all .5s 0s ease;
+  -o-transition: all .5s 0s ease;
+  transition: all .5s 0s ease;
+  filter: brightness(150%);
+}
+
+button.login {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

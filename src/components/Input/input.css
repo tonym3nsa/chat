@@ -1,0 +1,25 @@
+input.input {
+  border: solid 2px transparent;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: none;
+  resize: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 20px;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;}
+
+input.input:focus {
+  -webkit-transition: all 1s 0s ease;
+  -moz-transition: all 1s 0s ease;
+  -o-transition: all 1s 0s ease;
+  transition: all 1s 0s ease;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+input.login {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

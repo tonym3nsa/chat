@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./input.css";
 
 export const Input = (props) => {
   const { className, name, placeholder } = props;
