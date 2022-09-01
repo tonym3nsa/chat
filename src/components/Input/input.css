@@ -1,6 +1,7 @@
 input.input {
   border: solid 2px transparent;
   border-radius: 5px;
+  width: 100%;
   outline: none;
   box-shadow: none;
   resize: none;
@@ -10,6 +11,7 @@ input.input {
   padding: 15px 10px;
   box-sizing: border-box;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;}
+
 
 input.input:focus {
   -webkit-transition: all 1s 0s ease;
