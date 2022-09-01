@@ -21,3 +21,8 @@ button.login {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+button.link {
+  background: transparent;
+  color: #4E416D
+}

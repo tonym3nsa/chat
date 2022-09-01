@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,14 +7,16 @@ import { postMessage, getMessage } from "../../redux/actions/chat";
 import { AUTHOR, INTERVAL, LOGIN_PAGE } from "../../constants/constants";
 import { Bubble } from "../../components/Bubble/Bubble";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
+import { paginate } from "../../utils/utils";
 import "./chatPage.css";
 
 export const ChatPage = () => {
   const { history } = useSelector((state) => state.chatReducer);
   const navigate = useNavigate();
-  const messagesEndRef = useRef(null);
   const [messages, setMessages] = useState([]);
   const dispatch = useDispatch();
+  const [msg, setMsg] = useState([]);
+  const [pageSize, setPageSize] = useState(5);
 
   useEffect(() => {
     if (!sessionStorage.getItem(AUTHOR)) {
@@ -29,18 +31,13 @@ export const ChatPage = () => {
 
   useEffect(() => {
     if (history?.length > 0) {
-      scrollToBottom();
+      setMsg(paginate(history, pageSize, 1));
     }
   }, [history]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleScroll = (element) => {
-    if (element.target.scrollTop === 0) {
-      console.log("ddd", element.target.scrollTop);
-    }
+  const expand = () => {
+    setMsg(paginate(history, pageSize + 5, 1));
+    setPageSize(pageSize + 5);
   };
 
   const onSubmit = (event) => {
@@ -58,10 +55,9 @@ export const ChatPage = () => {
       <div
         className="chat-area"
         style={{ overflowY: "scroll", height: "100vh" }}
-        onScroll={handleScroll}
       >
-        {history?.length > 0 ? (
-          history.map((item) => {
+        {msg?.length > 0 ? (
+          msg.map((item) => {
             return (
               <Bubble
                 message={item.message}
@@ -73,6 +69,13 @@ export const ChatPage = () => {
           })
         ) : (
           <EmptyState />
+        )}
+        {history?.length > msg?.length ? (
+          <Button className="link py-5" onClick={expand}>
+            Load More
+          </Button>
+        ) : (
+          ""
         )}
       </div>
       <form onSubmit={onSubmit}>
