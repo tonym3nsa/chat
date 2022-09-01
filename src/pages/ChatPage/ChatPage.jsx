@@ -6,6 +6,7 @@ import { postMessage, getMessage } from "../../redux/actions/chat";
 import { AUTHOR } from "../../constants/constants";
 import { Bubble } from "../../components/Bubble/Bubble";
 import "./chatPage.css";
+import { EmptyState } from "../../components/EmptyState/EmptyState";
 
 export const ChatPage = () => {
   const { history } = useSelector((state) => state.chatReducer);
@@ -33,16 +34,20 @@ export const ChatPage = () => {
   return (
     <Fragment>
       <div className="chat-area">
-        {history?.map((item) => {
-          return (
-            <Bubble
-              message={item.message}
-              author={item.author}
-              timestamp={item.timeStamp}
-              key={item.timeStamp}
-            />
-          );
-        })}
+        {history?.length > 0 ? (
+          history?.map((item) => {
+            return (
+              <Bubble
+                message={item.message}
+                author={item.author}
+                timestamp={item.timeStamp}
+                key={item.timeStamp}
+              />
+            );
+          })
+        ) : (
+          <EmptyState />
+        )}
       </div>
       <form onSubmit={onSubmit}>
         <div className="messaging-section ">
