@@ -13,7 +13,6 @@ import "./chatPage.css";
 export const ChatPage = () => {
   const { history } = useSelector((state) => state.chatReducer);
   const navigate = useNavigate();
-  const [messages, setMessages] = useState([]);
   const dispatch = useDispatch();
   const [msg, setMsg] = useState([]);
   const [pageSize, setPageSize] = useState(5);
@@ -43,12 +42,11 @@ export const ChatPage = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     const message = event.target.chat.value;
-    let cloneMessages = [...messages];
-    const author = sessionStorage.getItem(AUTHOR);
-    cloneMessages.push({ timeStamp: new Date(), author, message });
-    setMessages(cloneMessages);
-    dispatch(postMessage({ timeStamp: new Date(), author, message }));
-    event.target.reset();
+    if (message?.length > 0) {
+      const author = sessionStorage.getItem(AUTHOR);
+      dispatch(postMessage({ timeStamp: new Date(), author, message }));
+      event.target.reset();
+    }
   };
   return (
     <Fragment>
