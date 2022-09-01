@@ -37,6 +37,12 @@ export const ChatPage = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleScroll = (element) => {
+    if (element.target.scrollTop === 0) {
+      console.log("ddd", element.target.scrollTop);
+    }
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     const message = event.target.chat.value;
@@ -49,7 +55,11 @@ export const ChatPage = () => {
   };
   return (
     <Fragment>
-      <div className="chat-area">
+      <div
+        className="chat-area"
+        style={{ overflowY: "scroll", height: "100vh" }}
+        onScroll={handleScroll}
+      >
         {history?.length > 0 ? (
           history.map((item) => {
             return (
