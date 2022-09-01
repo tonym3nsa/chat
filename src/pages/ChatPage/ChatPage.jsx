@@ -3,7 +3,7 @@ import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { postMessage, getMessage } from "../../redux/actions/chat";
-import { AUTHOR } from "../../constants/constants";
+import { AUTHOR, INTERVAL } from "../../constants/constants";
 import { Bubble } from "../../components/Bubble/Bubble";
 import "./chatPage.css";
 import { EmptyState } from "../../components/EmptyState/EmptyState";
@@ -17,6 +17,7 @@ export const ChatPage = () => {
 
   useEffect(() => {
     dispatch(getMessage());
+    setInterval(() => dispatch(getMessage()), INTERVAL); // fetch history at intervals of INTERVAL constant
   }, []);
 
   useEffect(() => {
@@ -28,12 +29,6 @@ export const ChatPage = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  // useEffect(() => {
-  //   if (messages.length > 0) {
-  //     scrollToBottom();
-  //   }
-  // }, [messages]);
 
   const onSubmit = (event) => {
     event.preventDefault();
