@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
-import { AUTHOR } from "../../constants/constants";
+import { AUTHOR, CHAT_PAGE } from "../../constants/constants";
 import "./loginPage.css";
 
 export const LoginPage = () => {
@@ -12,7 +12,7 @@ export const LoginPage = () => {
     event.preventDefault();
     if (event.target.username.value) {
       sessionStorage.setItem(AUTHOR, event.target.username.value);
-      navigate("/chat");
+      navigate(CHAT_PAGE);
     }
   };
   return (

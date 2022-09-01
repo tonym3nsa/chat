@@ -25,7 +25,8 @@
 .chat-area {
   overflow-y: auto;
   width: 80%;
-  display: block;
+  display: flex;
+  flex-direction: column-reverse;
   margin: 0 auto;
   padding: 80px 0;
 }

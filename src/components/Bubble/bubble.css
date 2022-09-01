@@ -15,6 +15,7 @@
 .bubble.self {
   background: #ffffff;
   float: right;
+  margin-left: auto;
 }
 
 .bubble:hover {

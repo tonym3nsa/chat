@@ -75,7 +75,6 @@ export const ChatPage = () => {
           <EmptyState />
         )}
       </div>
-      <div ref={messagesEndRef} />
       <form onSubmit={onSubmit}>
         <div className="messaging-section ">
           <div className="grid">
