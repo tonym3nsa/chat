@@ -13,6 +13,7 @@ export const Button = (props) => {
       onClick={() => setFocus(true)}
       onMouseUp={() => setFocus(false)}
       aria-pressed={focus}
+      data-test="button"
     >
       {children}
     </button>
